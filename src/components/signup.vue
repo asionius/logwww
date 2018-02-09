@@ -1,8 +1,8 @@
 <template>
 <div class="signup">
   <el-form :model="user" label-width="120px" label-position="right" ref="user" style="width: 90%;">
-    <el-form-item label="用户名" prop="name">
-    <el-input v-model="user.name"></el-input>
+    <el-form-item label="用户名" prop="username">
+    <el-input v-model="user.username"></el-input>
     </el-form-item>
     <el-form-item label="密码" prop="password">
     <el-input type="password" v-model="user.password"></el-input>
@@ -22,7 +22,8 @@
 export default {
   data() {
     return {
-      user: {}
+      user: {
+      }
     };
   },
   methods: {
