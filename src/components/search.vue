@@ -87,6 +87,7 @@ export default {
       }
       this.$refs.searchForm.validate(valid => {
         if (!valid) return false;
+        this.fullscreenLoading = true;
         this.$fetch.api_users
           .search({
             servers: this.searchForm.servers,
@@ -94,6 +95,7 @@ export default {
             content: this.searchForm.content
           })
           .then(data => {
+            this.fullscreenLoading = false;
             this.list = data.data;
             if(this.list.length == 0) 
               this.$message.warning("没有查询到结果")
