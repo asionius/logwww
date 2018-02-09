@@ -31,7 +31,9 @@
         </el-form>
     </div>
     <div>
+      <pre>
         {{list}}
+      </pre>
     </div> 
 </div>
 </template>
@@ -87,7 +89,7 @@ export default {
             content: this.searchForm.content
           })
           .then(data => {
-            list = data.data;
+            this.list = data.data;
             this.$refs.searchForm.resetFields();
           })
           .catch(err => {
