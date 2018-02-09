@@ -1,0 +1,10 @@
+.login, .signup {
+    text-align: left;
+    margin-top: 150px;
+    padding-top: 50px;
+    width: 400px;
+    display: inline-block;
+}
+.select-server {
+    width: 100%;
+}
