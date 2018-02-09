@@ -80,6 +80,11 @@ export default {
   },
   methods: {
     search() {
+      if(this.searchForm.timeRange[1].getTime() - this.searchForm.timeRange[0].getTime() > 1000 * 60 * 60)
+      {
+        this.$message.warning("请选择时间差小于一小时")
+        return;
+      }
       this.$refs.searchForm.validate(valid => {
         if (!valid) return false;
         this.$fetch.api_users
