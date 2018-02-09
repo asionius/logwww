@@ -27,11 +27,11 @@ export default {
   },
   methods: {
     onSubmit() {
-      if (!user.username || !user.password || !user.rpassword) {
+      if (!this.user.username || !this.user.password || !this.user.rpassword) {
         this.$message.warning("请将信息填写完整");
         return;
       }
-      if(user.password !== user.rpassword)
+      if(this.user.password !== this.user.rpassword)
       {
           this.$message.warning("密码不一致")
           return; 
