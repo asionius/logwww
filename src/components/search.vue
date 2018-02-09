@@ -92,7 +92,7 @@ export default {
             this.list = data.data;
             if(this.list.length == 0) 
               this.$message.warning("没有查询到结果")
-            this.$refs.searchForm.resetFields();
+            // this.$refs.searchForm.resetFields();
           })
           .catch(err => {
             console.error(err);
