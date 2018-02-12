@@ -8,7 +8,7 @@ function fetch(options) {
             //设置默认根地址
             baseURL: '',
             //设置请求超时设置
-            timeout: 120000,
+            timeout: 1200000,
         })
         //请求处理
         instance(options)
