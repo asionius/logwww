@@ -80,9 +80,9 @@ export default {
   },
   methods: {
     search() {
-      if(this.searchForm.timeRange[1].getTime() - this.searchForm.timeRange[0].getTime() > 1000 * 60 * 60)
+      if(this.searchForm.timeRange[1].getTime() - this.searchForm.timeRange[0].getTime() > 1000 * 60 * 60 * 24)
       {
-        this.$message.warning("请选择时间差小于一小时")
+        this.$message.warning("请选择时间差小于一天")
         return;
       }
       this.$refs.searchForm.validate(valid => {
