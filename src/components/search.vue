@@ -31,9 +31,7 @@
         </el-form>
     </div>
     <div>
-      <pre style="text-align: left;">
-        {{list}}
-      </pre>
+      <pre style="text-align: left;">{{list}}</pre>
     </div> 
 </div>
 </template>
