@@ -120,6 +120,7 @@ export default {
             loading.close();
             if (this.searchForm.generateDownloadFile) {
               this.downloadVisible = true;
+              this.list = ""
               return;
             }
 
