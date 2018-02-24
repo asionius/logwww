@@ -60,7 +60,9 @@ export default {
         servers: [
           { required: true, trigger: "change", message: "请选择服务器" }
         ],
-        timeRange: [{ required: true, trigger: "change", message: "请选择服务器" }],
+        timeRange: [
+          { required: true, trigger: "change", message: "请选择服务器" }
+        ],
         content: [
           { required: true, trigger: "blur", message: "请输入要查找的内容" }
         ]
@@ -88,22 +90,25 @@ export default {
     };
   },
   methods: {
-    setFileVisible(visible){
+    setFileVisible(visible) {
       this.downloadVisible = visible;
     },
     search() {
-      if(this.searchForm.timeRange[1].getTime() - this.searchForm.timeRange[0].getTime() > 1000 * 60 * 60 * 24)
-      {
-        this.$message.warning("请选择时间差小于一天")
+      if (
+        this.searchForm.timeRange[1].getTime() -
+          this.searchForm.timeRange[0].getTime() >
+        1000 * 60 * 60 * 24
+      ) {
+        this.$message.warning("请选择时间差小于一天");
         return;
       }
       this.$refs.searchForm.validate(valid => {
         if (!valid) return false;
         const loading = this.$loading({
           lock: true,
-          text: '正在查询请稍后....',
-          spinner: 'el-icon-loading',
-        })
+          text: "正在查询请稍后....",
+          spinner: "el-icon-loading"
+        });
         this.$fetch.api_users
           .search({
             servers: this.searchForm.servers,
@@ -113,12 +118,13 @@ export default {
           })
           .then(data => {
             loading.close();
-            this.list = data.data;
-            if(this.searchForm.generateDownloadFile)
+            if (this.searchForm.generateDownloadFile) {
               this.downloadVisible = true;
+              return;
+            }
 
-            if(this.list.length == 0) 
-              this.$message.warning("没有查询到结果")
+            this.list = data.data;
+            if (this.list.length == 0) this.$message.warning("没有查询到结果");
             // this.$refs.searchForm.resetFields();
           })
           .catch(err => {
@@ -130,8 +136,8 @@ export default {
     }
   },
   watch: {
-    "searchForm.generateDownloadFile": function (n,o) {
-        this.downloadVisible = false;
+    "searchForm.generateDownloadFile": function(n, o) {
+      this.downloadVisible = false;
     }
   }
 };
