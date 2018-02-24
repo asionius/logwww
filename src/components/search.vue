@@ -32,7 +32,9 @@
             <el-button @click="search">查询</el-button>
         </el-form-item>
         <el-form-item label="查询结果文件">
-            <a v-show="downloadVisible" :download="downloadFile" href="/result.txt">点击下载查询结果</a>
+          <div v-show="downloadVisible">
+            <a :download="downloadFile" href="/result.txt">点击下载查询结果</a>
+          </div>
         </el-form-item>
         </el-form>
     </div>
@@ -46,7 +48,7 @@
 export default {
   data() {
     return {
-      downloadVisible: false,
+      downloadVisible: true,
       downloadFile: "result.txt",
       searchForm: {
         servers: "",
@@ -86,6 +88,9 @@ export default {
     };
   },
   methods: {
+    setFileVisible(visible){
+      this.downloadVisible = visible;
+    },
     search() {
       if(this.searchForm.timeRange[1].getTime() - this.searchForm.timeRange[0].getTime() > 1000 * 60 * 60 * 24)
       {
@@ -125,8 +130,7 @@ export default {
     }
   },
   watch: {
-    "searchForm.generateDownloadFile": (n,o)=>{
-      if(!n)
+    "searchForm.generateDownloadFile": function (n,o) {
         this.downloadVisible = false;
     }
   }
