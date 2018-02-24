@@ -48,7 +48,7 @@
 export default {
   data() {
     return {
-      downloadVisible: true,
+      downloadVisible: false,
       downloadFile: "result.txt",
       searchForm: {
         servers: "",
