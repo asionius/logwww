@@ -25,8 +25,14 @@
         <el-form-item label="搜索内容" prop="content">
             <el-input v-model="searchForm.content"></el-input>
         </el-form-item>
-        <el-form-item>
+        <el-form-item label="是否生成下载文件" prop="generateDownloadFile">
+            <el-switch v-model="searchForm.generateDownloadFile"></el-switch>
+        </el-form-item>
+        <el-form-item label="操作">
             <el-button @click="search">查询</el-button>
+        </el-form-item>
+        <el-form-item label="查询结果文件">
+            <a v-show="downloadVisible" :download="downloadFile" href="/result.txt">点击下载查询结果</a>
         </el-form-item>
         </el-form>
     </div>
@@ -40,10 +46,13 @@
 export default {
   data() {
     return {
+      downloadVisible: false,
+      downloadFile: "result.txt",
       searchForm: {
         servers: "",
         timeRange: "",
-        content: ""
+        content: "",
+        generateDownloadFile: false
       },
       searchFormRule: {
         servers: [
@@ -94,11 +103,15 @@ export default {
           .search({
             servers: this.searchForm.servers,
             timeRange: this.searchForm.timeRange,
-            content: this.searchForm.content
+            content: this.searchForm.content,
+            generateDownloadFile: this.searchForm.generateDownloadFile
           })
           .then(data => {
             loading.close();
             this.list = data.data;
+            if(this.searchForm.generateDownloadFile)
+              this.downloadVisible = true;
+
             if(this.list.length == 0) 
               this.$message.warning("没有查询到结果")
             // this.$refs.searchForm.resetFields();
@@ -109,6 +122,12 @@ export default {
             loading.close();
           });
       });
+    }
+  },
+  watch: {
+    "searchForm.generateDownloadFile": (n,o)=>{
+      if(!n)
+        this.downloadVisible = false;
     }
   }
 };
