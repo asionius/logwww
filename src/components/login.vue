@@ -41,7 +41,7 @@ export default {
         })
         .catch(err => {
             console.err(err);
-            this.$error(err.msg);
+            this.$message.error(err.msg);
         });
     }
   }
