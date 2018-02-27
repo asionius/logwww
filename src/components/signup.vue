@@ -12,7 +12,7 @@
     </el-form-item>
      <el-form-item>
     <el-button type="primary" @click="onSubmit">注册</el-button>
-    <router-link to="signup"><el-button>登录</el-button></router-link>
+    <router-link to="login"><el-button>登录</el-button></router-link>
   </el-form-item>
   </el-form>
 </div>
